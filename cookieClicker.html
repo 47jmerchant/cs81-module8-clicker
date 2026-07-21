@@ -18,7 +18,42 @@
   <div id="message" style="font-size: 1.2rem; margin-top: 15px; color: #555;">Click the cookie to start!</div>
 
   <script>
-    // GOING TO ADD CODE HERE
+    // Step 2: Select the three elements the app needs using their ids
+    const cookieBtn = document.getElementById("cookieBtn");
+    const counter = document.getElementById("counter");
+    const message = document.getElementById("message");
+
+    // clicks tracks how many times the cookie has been clicked — starts at 0
+    let clicks = 0;
+
+    // Step 3: addEventListener tells JavaScript to watch the button for "click"
+    // events. The function inside (the callback) runs ONCE PER CLICK — not on a
+    // timer like setInterval, but only when the user actually does something.
+    cookieBtn.addEventListener("click", function () {
+
+    // Increase the counter variable by 1 each click
+    clicks++;
+
+    // DOM update: sync the on-screen number with the variable
+    counter.textContent = clicks;
+
+    // Milestone messages — checked from HIGHEST to LOWEST so the biggest
+    // milestone you've reached always wins. If we checked 10 first,
+    // clicks >= 10 would stay true forever and the later messages
+    // would never get a chance to show.
+    if (clicks >= 100) {
+    message.textContent = "🏆 You win! Maybe take a break...";
+    } 
+    else if (clicks >= 50) {
+    message.textContent = "😅 Are you still clicking?";
+  } 
+    else if (clicks >= 25) {
+    message.textContent = "🤯 Wow, that's a lot of cookies!";
+  } 
+    else if (clicks >= 10) {
+    message.textContent = "🔥 You're just getting started!";
+  }
+});
   </script>
 
 </body>
