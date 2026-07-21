@@ -2,58 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cookie Clicker</title>
+  <title>Hacker Clicker</title>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding-top: 60px; background-color: #fdf6e3;">
+<body id="page" style="font-family: monospace; text-align: center; padding-top: 60px; background-color: #0d1117; color: #00ff41;">
 
-  <h1>🍪 Cookie Clicker 🍪</h1>
+  <h1>🔐 HACKER CLICKER 🔐</h1>
+  <p style="color: #4caf50;">[ TARGET: FIREWALL v9.2 — CLICK TO BREACH ]</p>
 
-  <!-- The clickable cookie button — JavaScript will listen for clicks on this -->
-  <button id="cookieBtn" style="font-size: 4rem; background: none; border: none; cursor: pointer;">🍪</button>
+  <!-- The clickable "hack" button — each click is one intrusion attempt -->
+  <button id="hackBtn" style="font-size: 4rem; background: none; border: none; cursor: pointer;">💻</button>
 
-  <!-- Counter display — starts at 0, JavaScript will update this number -->
+  <!-- Counter display — shows total intrusion attempts, starts at 0 -->
   <div id="counter" style="font-size: 2rem; margin-top: 20px;">0</div>
 
-  <!-- Message area — milestone messages will appear here -->
-  <div id="message" style="font-size: 1.2rem; margin-top: 15px; color: #555;">Click the cookie to start!</div>
+  <!-- Message area — shows breach progress at milestones -->
+  <div id="message" style="font-size: 1.1rem; margin-top: 15px; color: #4caf50;">> awaiting input_</div>
 
   <script>
-    // Step 2: Select the three elements the app needs using their ids
-    const cookieBtn = document.getElementById("cookieBtn");
+    // Select the three elements the app needs using their ids
+    const hackBtn = document.getElementById("hackBtn");
     const counter = document.getElementById("counter");
     const message = document.getElementById("message");
+    const page = document.getElementById("page");
 
-    // clicks tracks how many times the cookie has been clicked — starts at 0
+    // clicks tracks total intrusion attempts — starts at 0
     let clicks = 0;
 
-    // Step 3: addEventListener tells JavaScript to watch the button for "click"
-    // events. The function inside (the callback) runs ONCE PER CLICK — not on a
-    // timer like setInterval, but only when the user actually does something.
-    cookieBtn.addEventListener("click", function () {
+    // addEventListener watches the button; the callback runs once per click
+    hackBtn.addEventListener("click", function () {
 
-    // Increase the counter variable by 1 each click
-    clicks++;
+      // Increase the counter and sync the on-screen number
+      clicks++;
+      counter.textContent = clicks;
 
-    // DOM update: sync the on-screen number with the variable
-    counter.textContent = clicks;
-
-    // Milestone messages — checked from HIGHEST to LOWEST so the biggest
-    // milestone you've reached always wins. If we checked 10 first,
-    // clicks >= 10 would stay true forever and the later messages
-    // would never get a chance to show.
-    if (clicks >= 100) {
-    message.textContent = "🏆 You win! Maybe take a break...";
-    } 
-    else if (clicks >= 50) {
-    message.textContent = "😅 Are you still clicking?";
-  } 
-    else if (clicks >= 25) {
-    message.textContent = "🤯 Wow, that's a lot of cookies!";
-  } 
-    else if (clicks >= 10) {
-    message.textContent = "🔥 You're just getting started!";
-  }
-});
+      // Milestones checked HIGHEST to LOWEST so the biggest reached
+      // milestone always wins. Each stage changes the background color
+      // to show the "breach" getting deeper.
+      if (clicks >= 100) {
+        message.textContent = "> ROOT ACCESS GRANTED. You win! Maybe take a break 🏆";
+        page.style.backgroundColor = "#001a00";       // deep green — full breach
+        hackBtn.textContent = "🔓";                    // TWIST: the lock opens!
+      } else if (clicks >= 50) {
+        message.textContent = "> firewall integrity at 12%... admin has been paged 😅";
+        page.style.backgroundColor = "#1a0d00";       // dark orange — alarms going off
+      } else if (clicks >= 25) {
+        message.textContent = "> encryption cracked. accessing mainframe... 🤯";
+        page.style.backgroundColor = "#0d0d1a";       // dark blue — deeper in
+      } else if (clicks >= 10) {
+        message.textContent = "> port scan complete. vulnerability found 🔥";
+        page.style.backgroundColor = "#0d1a17";       // subtle green shift
+      }
+    });
   </script>
 
 </body>
